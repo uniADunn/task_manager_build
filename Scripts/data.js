@@ -32,8 +32,14 @@ function addTask(title, description, status){
         console.log('description validated');
         validateStatus(status);
         console.log('status validated');
+        console.log(`Validation successful. Creating Task...`);
+
         const newTask = new Task(title, description, status);
+        console.log('Task created');
+        console.log(newTask);
+        console.log('Adding Task to tasks array...');
         tasks.push(newTask);
+        console.log('Task added to tasks array');
         return true;
         
     } catch (error) {

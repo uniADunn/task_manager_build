@@ -10,9 +10,7 @@ form.addEventListener('submit', (event)=>{
     const title = titleInput.value;
     const description = descriptionInput.value;
     const status = statusInput.value;
-    const newTask = new Task(title, description, status);
-    console.log("heard new task submission:");
-    console.log(newTask);
+    console.log("heard new task submission: calling addTask from data.js ...");
     const taskAdded = addTask(title, description, status);
     if(taskAdded){
         console.log('Task added successfully.');
