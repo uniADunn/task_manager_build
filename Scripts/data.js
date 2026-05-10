@@ -27,11 +27,11 @@ const validateStatus = (status) => {
 function addTask(title, description, status){
     try{
         validateText(title);
-        console.log('title validated');
+        //console.log('title validated');
         validateText(description);
-        console.log('description validated');
+        //console.log('description validated');
         validateStatus(status);
-        console.log('status validated');
+        //console.log('status validated');
         console.log(`Validation successful. Creating Task...`);
 
         const newTask = new Task(title, description, status);

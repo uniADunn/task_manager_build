@@ -22,4 +22,4 @@ form.addEventListener('submit', (event)=>{
     else{
         console.log('Failed to add task. Please check input values and try again.');
     }
-})
+});
