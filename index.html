@@ -6,10 +6,39 @@
     <meta name="description" content="A task manager applicatoion built using JavaScript, HTML, and CSS. It allows users to create, manage, and delete tasks.">
     <meta name="author" content="Ashley Dunn">
     <link rel="stylesheet" href="Styles/styles.css">
+    <script src="Scripts/task.js" defer></script>
+    <script src="Scripts/data.js" defer></script>
+    <script src="Scripts/event.js" defer></script>
     <title>Simple Task Manager</title>
 </head>
 <body>
+    <header>
+        <h1 id="appTitle">Simple Task Manager</h1>        
+    </header>
+    <article id="form-layout">
+        <form id="taskForm" method="POST">
+            
+            <div id="form-input">
+                <label for="title">Task Title:</label>
+                <input type="text" id="title" name="title" required>
 
+                <label for="description">Task Description:</label>
+                <textarea rows="5" id="description" name="description" required></textarea>
+                
+                <label for="status">Task Status:</label>
+                    <select id="status" name="status" required>
+                        <option value="Not Started">Not Started</option>
+                        <option value="In Progress">In Progress</option>
+                        <option value="Completed">Completed</option>
+                    </select>
+            </div>
+
+            <div id="form-actions">                    
+                <button type="submit" id="submitBtn">Add Task</button>
+            </div>
+
+        </form>
+    </article>
     
 </body>
 </html>
