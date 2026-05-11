@@ -22,47 +22,69 @@ removeMessage = () => {
 }
 
 loadTasks = (tasks) => {
-    
     tasks.forEach(
             (task) => {
-                let taskDiv = document.createElement('div');
+                //task container
+                const taskDiv = document.createElement('div');
                 taskDiv.classList.add('task');
                 taskDiv.style.backgroundColor = '#0B0D67';
-
-                let divSepratorLeft = document.createElement('div');
+                //seperator containers
+                const divSepratorLeft = document.createElement('div');
                 divSepratorLeft.classList.add('separatorLeft');
                 taskDiv.appendChild(divSepratorLeft);
 
-                let divSepratorMiddle = document.createElement('div');
+                const divSepratorMiddle = document.createElement('div');
                 divSepratorMiddle.classList.add('separatorMiddle');
                 taskDiv.appendChild(divSepratorMiddle);
 
-                let divSepratorRight = document.createElement('div');
+                const divSepratorRight = document.createElement('div');
                 divSepratorRight.classList.add('separatorRight');
                 taskDiv.appendChild(divSepratorRight);
-
-                let title = document.createElement('h3');
+                //task content
+                const title = document.createElement('h3');
                 title.textContent = `${task.title.toUpperCase()}`;
 
-                let description = document.createElement('p');
+                const description = document.createElement('p');
                 description.innerHTML = `<span style="font-style:italic;">Description:&emsp;</span> ${task.description}`;
+
+                const status = document.createElement('select');
+                status.name = 'update-status';
+                status.style.backgroundColor = '#0B0D67';
+                status.options.backgroundColor = '#0B0D67';
+                status.style.color = '#FFFFFF';
+                status.classList.add('task-status');
+                const validStatuses = getStatuses();
+                validStatuses.forEach(
+                    (statusOption) =>{
+                        const opt = document.createElement('option');
+                        opt.value = statusOption;
+                        opt.textContent = statusOption;
+                        opt.style.backgroundColor = '#FFFFFF';
+                        opt.style.color= '#000000';
+                        status.appendChild(opt);
+                    });
+                    status.value = task.status;
+                    if(status.value === 'Not Started'){
+                        status.style.backgroundColor = '#911818';
+                    }
+                    else if(status.value === 'In Progress'){
+                        status.style.backgroundColor = '#c8af0d';
+                    }
+                    else if(status.value === 'Completed'){
+                        status.style.backgroundColor = '#227022';
+                    }
                 
-                let status = document.createElement('p');
-                status.innerHTML = `<span style="font-style:italic;">Status:&emsp;</span>${task.status}`;
-
-
                 divSepratorLeft.appendChild(title);
                 divSepratorMiddle.appendChild(description);
                 divSepratorRight.appendChild(status);
                 tasklist.appendChild(taskDiv);
             });
+            
 
 }
 
 function renderTasks(){
     event.preventDefault();
-
-    
     const tasks = getTasks();
     //console.log(tasks);
     if(tasks === null){
@@ -71,6 +93,8 @@ function renderTasks(){
     else{
         removeMessage();
         loadTasks(tasks);
+        
+        
         
     }
 }

@@ -47,7 +47,9 @@ function addTask(title, description, status){
         return false;
     }
 };
-
+getStatuses = () => {
+    return validStatuses;
+}
 function getTasks(){
     if(tasks.length === 0){
         console.log('No tasks found.');

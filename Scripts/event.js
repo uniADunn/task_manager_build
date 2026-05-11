@@ -3,7 +3,6 @@ const titleInput = document.querySelector('#title');
 const descriptionInput = document.querySelector('#description');
 const statusInput = document.querySelector('#status');
 const submitbtn = document.querySelector('#submitBtn');
-
 document.addEventListener('DOMContentLoaded', ()=>{
     console.log('DOM loaded. Rendering tasks...');
     renderTasks();
@@ -28,3 +27,31 @@ form.addEventListener('submit', (event)=>{
         console.log('Failed to add task. Please check input values and try again.');
     }
 });
+
+
+const updateStatus = document.querySelector('#task-container');
+
+
+updateStatus.addEventListener('change', (event)=>{
+event.preventDefault();
+const newStatus = event.target.value;
+console.log(`Task status changed to "${newStatus}". Updating task...`);
+switch(newStatus){
+    case 'Not Started':
+        event.target.style.backgroundColor = '#911818';
+        break;
+    case 'In Progress':
+        event.target.style.backgroundColor = '#c8af0d';
+        break;
+    case 'Completed':
+        event.target.style.backgroundColor = '#227022';
+        break;
+    default:
+        event.target.style.backgroundColor = '#FFFFFF';
+    }
+
+});
+    
+    
+
+
