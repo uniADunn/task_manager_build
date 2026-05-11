@@ -35,15 +35,19 @@ const updateStatus = document.querySelector('#task-container');
 updateStatus.addEventListener('change', (event)=>{
 event.preventDefault();
 const newStatus = event.target.value;
-console.log(`Task status changed to "${newStatus}". Updating task...`);
+const taskIndex = Number(event.target.dataset.index);
+console.log(`Task status changed to "${newStatus}". Index: ${taskIndex}. Updating task...`);
 switch(newStatus){
     case 'Not Started':
+        updateTaskStatus(taskIndex, newStatus);
         event.target.style.backgroundColor = '#911818';
         break;
     case 'In Progress':
+        updateTaskStatus(taskIndex, newStatus);
         event.target.style.backgroundColor = '#c8af0d';
         break;
     case 'Completed':
+        updateTaskStatus(taskIndex, newStatus);
         event.target.style.backgroundColor = '#227022';
         break;
     default:

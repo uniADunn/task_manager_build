@@ -47,6 +47,19 @@ function addTask(title, description, status){
         return false;
     }
 };
+updateTaskStatus = (taskIndex, newStatus) => {
+    try{
+        validateStatus(newStatus);
+        if(taskIndex >= 0 && taskIndex < tasks.length){
+            tasks[taskIndex].status = newStatus;
+            console.log(`Task status updated: ${tasks[taskIndex].toString()}`);
+        }
+    } 
+    catch (error) {
+        console.error(error.message);
+    }
+}
+
 getStatuses = () => {
     return validStatuses;
 }

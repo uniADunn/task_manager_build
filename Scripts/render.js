@@ -23,7 +23,7 @@ removeMessage = () => {
 
 loadTasks = (tasks) => {
     tasks.forEach(
-            (task) => {
+            (task, index) => {
                 //task container
                 const taskDiv = document.createElement('div');
                 taskDiv.classList.add('task');
@@ -53,6 +53,7 @@ loadTasks = (tasks) => {
                 status.options.backgroundColor = '#0B0D67';
                 status.style.color = '#FFFFFF';
                 status.classList.add('task-status');
+                status.dataset.index = index;
                 const validStatuses = getStatuses();
                 validStatuses.forEach(
                     (statusOption) =>{
