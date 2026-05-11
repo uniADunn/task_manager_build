@@ -6,4 +6,10 @@ class Task {
         this.description = description;
         this.status = status;
     }
+
+    toString(){
+        return `Task Title: ${this.title}
+Description: ${this.description}
+Status: ${this.status}`;
+    }
 }

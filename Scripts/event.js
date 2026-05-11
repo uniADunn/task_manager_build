@@ -4,6 +4,10 @@ const descriptionInput = document.querySelector('#description');
 const statusInput = document.querySelector('#status');
 const submitbtn = document.querySelector('#submitBtn');
 
+document.addEventListener('DOMContentLoaded', ()=>{
+    console.log('DOM loaded. Rendering tasks...');
+    renderTasks();
+});
 
 form.addEventListener('submit', (event)=>{
     event.preventDefault();
@@ -13,6 +17,7 @@ form.addEventListener('submit', (event)=>{
     console.log("heard new task submission: calling addTask from data.js ...");
     const taskAdded = addTask(title, description, status);
     if(taskAdded){
+        renderTasks();
         console.log('Task added successfully.');
         // clear input fields
         titleInput.value = '';
