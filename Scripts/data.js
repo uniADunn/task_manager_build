@@ -72,3 +72,18 @@ function getTasks(){
         return tasks;
     }
 }
+
+deleteTask = (taskIndex) =>{
+    if(taskIndex >= 0 && taskIndex < tasks.length){
+        console.log(`Deleting task...`);
+        const taskListDeleted = tasks.filter((task, index) => index !== taskIndex);
+        tasks.length = 0; // Clear the original array
+        if(taskListDeleted.length ===0){
+            console.log('All tasks deleted. Task list is now empty.');
+        }
+        else{
+            console.log('Task deleted. Updated task list:');
+            tasks.push(...taskListDeleted); // Update the original array with the filtered tasks
+        }
+    }
+}

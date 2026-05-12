@@ -20,40 +20,43 @@ removeMessage = () => {
             });
     }
 }
-
 loadTasks = (tasks) => {
     tasks.forEach(
             (task, index) => {
                 //task container
                 const taskDiv = document.createElement('div');
                 taskDiv.classList.add('task');
+                taskDiv.dataset.index = index;
                 taskDiv.style.backgroundColor = '#0B0D67';
                 //seperator containers
-                const divSepratorLeft = document.createElement('div');
-                divSepratorLeft.classList.add('separatorLeft');
-                taskDiv.appendChild(divSepratorLeft);
+                const divSeperatorLeft = document.createElement('div');
+                divSeperatorLeft.classList.add('separatorLeft');
+                taskDiv.appendChild(divSeperatorLeft);
 
-                const divSepratorMiddle = document.createElement('div');
-                divSepratorMiddle.classList.add('separatorMiddle');
-                taskDiv.appendChild(divSepratorMiddle);
+                const divSeperatorMiddle = document.createElement('div');
+                divSeperatorMiddle.classList.add('separatorMiddle');
+                taskDiv.appendChild(divSeperatorMiddle);
 
-                const divSepratorRight = document.createElement('div');
-                divSepratorRight.classList.add('separatorRight');
-                taskDiv.appendChild(divSepratorRight);
+                const divSeperatorRight = document.createElement('div');
+                divSeperatorRight.classList.add('separatorRight');
+                taskDiv.appendChild(divSeperatorRight);
                 //task content
                 const title = document.createElement('h3');
                 title.textContent = `${task.title.toUpperCase()}`;
+                
 
                 const description = document.createElement('p');
-                description.innerHTML = `<span style="font-style:italic;">Description:&emsp;</span> ${task.description}`;
+                description.innerHTML = `<span style="font-style:italic;">Description:&emsp;</span><br> ${task.description}.`;
 
-                const status = document.createElement('select');
-                status.name = 'update-status';
-                status.style.backgroundColor = '#0B0D67';
-                status.options.backgroundColor = '#0B0D67';
-                status.style.color = '#FFFFFF';
-                status.classList.add('task-status');
-                status.dataset.index = index;
+                const select = document.createElement('select');
+                select.name = 'update-status';
+                select.style.backgroundColor = '#0B0D67';
+                select.options.backgroundColor = '#0B0D67';
+                select.style.padding = '10px';
+                select.style.border = 'none';
+                select.style.color = '#FFFFFF';
+                select.classList.add('task-status');
+                select.dataset.index = index;
                 const validStatuses = getStatuses();
                 validStatuses.forEach(
                     (statusOption) =>{
@@ -62,26 +65,38 @@ loadTasks = (tasks) => {
                         opt.textContent = statusOption;
                         opt.style.backgroundColor = '#FFFFFF';
                         opt.style.color= '#000000';
-                        status.appendChild(opt);
+                        select.appendChild(opt);
                     });
-                    status.value = task.status;
-                    if(status.value === 'Not Started'){
-                        status.style.backgroundColor = '#911818';
+                    select.value = task.status;
+                    if(select.value === 'Not Started'){
+                        select.style.backgroundColor = '#911818';
                     }
-                    else if(status.value === 'In Progress'){
-                        status.style.backgroundColor = '#c8af0d';
+                    else if(select.value === 'In Progress'){
+                        select.style.backgroundColor = '#c8af0d';
                     }
-                    else if(status.value === 'Completed'){
-                        status.style.backgroundColor = '#227022';
+                    else if(select.value === 'Completed'){
+                        select.style.backgroundColor = '#227022';
                     }
+
+                const deleteBtn = document.createElement('button');
+                deleteBtn.textContent = 'Delete';
+                deleteBtn.classList.add('deleteBtn');
+                deleteBtn.style.backgroundColor = '#911818';
+                deleteBtn.style.color = '#FFFFFF';
+                deleteBtn.style.padding = '10px 30px';
+                deleteBtn.style.border = 'none';
+                deleteBtn.style.borderRadius = '5px';
+                deleteBtn.style.margin = '5px 5px';
+                deleteBtn.style.cursor = 'pointer';
+                deleteBtn.dataset.index = index;
+
                 
-                divSepratorLeft.appendChild(title);
-                divSepratorMiddle.appendChild(description);
-                divSepratorRight.appendChild(status);
+                divSeperatorLeft.appendChild(title);
+                divSeperatorMiddle.appendChild(description);
+                divSeperatorRight.appendChild(select);
+                divSeperatorRight.appendChild(deleteBtn);
                 tasklist.appendChild(taskDiv);
             });
-            
-
 }
 
 function renderTasks(){
@@ -89,14 +104,30 @@ function renderTasks(){
     const tasks = getTasks();
     //console.log(tasks);
     if(tasks === null){
+        removeMessage();
         noTasksMessage();
     }
     else{
         removeMessage();
-        loadTasks(tasks);
-        
-        
-        
+        loadTasks(tasks);  
+    }
+}
+
+updateTaskStatusColours = (newStatus, target)=>{    
+    if(target){
+        switch(newStatus){
+            case 'Not Started':
+                target.style.backgroundColor = '#911818';
+                break;
+            case 'In Progress':
+                target.style.backgroundColor = '#c8af0d';
+                break;
+            case 'Completed':
+                target.style.backgroundColor = '#227022';
+                break;
+            default:
+                target.style.backgroundColor = '#FFFFFF';
+        }
     }
 }
 

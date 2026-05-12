@@ -28,33 +28,37 @@ form.addEventListener('submit', (event)=>{
     }
 });
 
-
-const updateStatus = document.querySelector('#task-container');
-
-
-updateStatus.addEventListener('change', (event)=>{
-event.preventDefault();
+const taskList = document.querySelector('#task-container');
+taskList.addEventListener('change', (event)=>{
 const newStatus = event.target.value;
 const taskIndex = Number(event.target.dataset.index);
 console.log(`Task status changed to "${newStatus}". Index: ${taskIndex}. Updating task...`);
 switch(newStatus){
     case 'Not Started':
         updateTaskStatus(taskIndex, newStatus);
-        event.target.style.backgroundColor = '#911818';
+        updateTaskStatusColours(newStatus, event.target);        
         break;
     case 'In Progress':
         updateTaskStatus(taskIndex, newStatus);
-        event.target.style.backgroundColor = '#c8af0d';
+        updateTaskStatusColours(newStatus, event.target);
         break;
     case 'Completed':
         updateTaskStatus(taskIndex, newStatus);
-        event.target.style.backgroundColor = '#227022';
+        updateTaskStatusColours(newStatus, event.target);
         break;
     default:
-        event.target.style.backgroundColor = '#FFFFFF';
+        updateTaskStatusColours(newStatus, event.target);
     }
-
 });
+taskList.addEventListener('click', (event)=>{
+    if(event.target.classList.contains('deleteBtn')){
+        const taskIndex = Number(event.target.dataset.index);
+        console.log(`Delete button clicked for task index: ${taskIndex}. Deleting task...`);
+        deleteTask(taskIndex);
+        renderTasks();
+    }
+});
+
     
     
 
