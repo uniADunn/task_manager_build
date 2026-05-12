@@ -10,6 +10,14 @@ body{
 header, footer{
     background-color: #20665F;
 }
+footer{
+    color: #FFFFFF;
+    text-align: center;
+    padding: 20px;
+    position: fixed;
+    width: 100%;
+    bottom:0;
+}
 article{
     background-color: #20665F;
     padding : 10px 20px;
