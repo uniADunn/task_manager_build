@@ -80,18 +80,10 @@ select{
     width: 100%;
     padding: 10px;
     margin:5px;
-    display: block;
+    
     
 }
-.task{
-    display: inline-block;
-    border: 2px solid #000000;
-    background-color: #20665F;
-    border-radius: 5px;
-    padding: 5px;
-    margin: 5px;
-    width: 100%;
-}   
+
 #task-title{
     font-size: 1.5em;
     color: #FFFFFF;
@@ -99,32 +91,43 @@ select{
     text-align: center;
     
 }
+.task{
+    border: 2px solid #000000;
+    background-color: #20665F;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+    display :block;
+}   
+
+.separatorTop{
+    padding: 10px 10px 0px 10px;
+    display: flex;
+    justify-content: flex-start;
+    
+}
+.details-and-actions{
+    display:flex;
+    justify-content: space-between;
+    ;
+}
 
 .separatorLeft{
-    padding: 5px 10px;
-    display: inline-flex;
-    justify-content: center;
-    width: 20%;
+    display:inline-block;
+    padding: 5px;
     
 }
-
-.separatorMiddle{
-    padding: 5px 10px;
-    display: inline-flex;
-    justify-content: left;
-    align-items: center;
-    width:40%;
-    
-}
-.separatorMiddle p{
-    margin: 0px 50px;
+.separatorLeft p{
+    padding :5px 5px;
 }
 .separatorRight{
-    padding: 5px 10px;
-    display: inline-flex;
-    justify-content: space-evenly;
-    align-items: flex-start;
-    width: 40%;}
+    display:inline-flex;
+    justify-content: flex-end;
+    flex-direction: column;
+    gap: 5px;
+    padding: 5px;
+    
+}
 
 
 

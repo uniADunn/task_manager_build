@@ -44,24 +44,37 @@ loadTasks = (tasks) => {
                 taskDiv.dataset.index = index;
                 taskDiv.style.backgroundColor = '#0B0D67';
                 //seperator containers
+                const divSeperatorTop = document.createElement('div');
+                divSeperatorTop.classList.add('separatorTop');
+                taskDiv.appendChild(divSeperatorTop);
+
+                //task content
+                const title = document.createElement('h3');
+                title.textContent = `${task.title.toUpperCase()}`;
+                taskDiv.appendChild(divSeperatorTop);
+                divSeperatorTop.appendChild(title);
+
+                const divDetailsAndActionsContainer = document.createElement('div');
+                divDetailsAndActionsContainer.classList.add('details-and-actions');
+                taskDiv.appendChild(divDetailsAndActionsContainer);
+
+                
                 const divSeperatorLeft = document.createElement('div');
                 divSeperatorLeft.classList.add('separatorLeft');
                 taskDiv.appendChild(divSeperatorLeft);
-
-                const divSeperatorMiddle = document.createElement('div');
-                divSeperatorMiddle.classList.add('separatorMiddle');
-                taskDiv.appendChild(divSeperatorMiddle);
 
                 const divSeperatorRight = document.createElement('div');
                 divSeperatorRight.classList.add('separatorRight');
                 taskDiv.appendChild(divSeperatorRight);
 
-                //task content
-                const title = document.createElement('h3');
-                title.textContent = `${task.title.toUpperCase()}`;
+                
                 //description element with italicized "Description:" label and line break before description text
                 const description = document.createElement('p');
-                description.innerHTML = `<span style="font-style:italic;">Description:&emsp;</span><br> ${task.description}.`;
+                description.innerHTML = `<span style="font-style:italic;">Description:</span><br> ${task.description}.`;
+
+                const createdAt = document.createElement('p');
+                createdAt.innerHTML = `<span style="font-style:italic;">Created At:</span> ${task.start_ts}.`;
+
                 //select element for task status with options generated from valid statuses defined in data.js and pre-selected to current task status
                 const select = document.createElement('select');
                 select.name = 'update-status';
@@ -103,16 +116,19 @@ loadTasks = (tasks) => {
                 deleteBtn.style.padding = '10px 30px';
                 deleteBtn.style.border = 'none';
                 deleteBtn.style.borderRadius = '5px';
-                deleteBtn.style.margin = '5px 5px';
+                
                 deleteBtn.style.cursor = 'pointer';
                 deleteBtn.dataset.index = index;
 
                 //append task content elements to their respective separator containers and append separator containers to task container,
                 //then append task container to task list container in the DOM
-                divSeperatorLeft.appendChild(title);
-                divSeperatorMiddle.appendChild(description);
+                
+                divSeperatorLeft.appendChild(createdAt);
+                divSeperatorLeft.appendChild(description);
                 divSeperatorRight.appendChild(select);
                 divSeperatorRight.appendChild(deleteBtn);
+                divDetailsAndActionsContainer.appendChild(divSeperatorLeft);
+                divDetailsAndActionsContainer.appendChild(divSeperatorRight);
                 tasklist.appendChild(taskDiv);
             });
 }
