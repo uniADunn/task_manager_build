@@ -18,6 +18,15 @@ footer{
     width: 100%;
     bottom:0;
 }
+h1,h2,h3{
+    color: #FFFFFF;
+    font-family: 'Cardo', sans-serif;
+    font-weight:700;
+}
+p{
+    color: #FFFFFF;
+    font-family: 'Lato', sans-serif;
+}
 article{
     background-color: #20665F;
     padding : 10px 20px;
@@ -58,10 +67,11 @@ select{
 
 
 #appTitle{
-    color : #FFFFFF;
+    color : #0B0D67;
     font-size: 2.5em;
     text-align: center;
     padding: 20px;
+    text-decoration: underline;
 }
 
 #submitBtn{
@@ -85,10 +95,12 @@ select{
 }
 
 #task-title{
-    font-size: 1.5em;
-    color: #FFFFFF;
+    font-size: 2em;
+    color: #0B0D67;
     margin-bottom: 5px;
     text-align: center;
+    font-weight: 700;
+    text-decoration: underline;
     
 }
 .task{
@@ -105,6 +117,9 @@ select{
     display: flex;
     justify-content: flex-start;
     
+}
+.separatorTop h3{
+    text-decoration: underline;
 }
 .details-and-actions{
     display:flex;

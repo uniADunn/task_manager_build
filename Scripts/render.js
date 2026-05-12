@@ -70,7 +70,7 @@ loadTasks = (tasks) => {
                 
                 //description element with italicized "Description:" label and line break before description text
                 const description = document.createElement('p');
-                description.innerHTML = `<span style="font-style:italic;">Description:</span><br> ${task.description}.`;
+                description.innerHTML = `<span style="font-style:italic;">Description:</span><br>&emsp; ${task.description}.`;
 
                 const createdAt = document.createElement('p');
                 createdAt.innerHTML = `<span style="font-style:italic;">Created At:</span> ${task.start_ts}.`;
@@ -78,8 +78,7 @@ loadTasks = (tasks) => {
                 //select element for task status with options generated from valid statuses defined in data.js and pre-selected to current task status
                 const select = document.createElement('select');
                 select.name = 'update-status';
-                select.style.backgroundColor = '#0B0D67';
-                select.options.backgroundColor = '#0B0D67';
+                select.style.backgroundColor = '#0B0D67';                
                 select.style.padding = '10px';
                 select.style.border = 'none';
                 select.style.color = '#FFFFFF';
@@ -94,6 +93,8 @@ loadTasks = (tasks) => {
                         opt.textContent = statusOption;
                         opt.style.backgroundColor = '#FFFFFF';
                         opt.style.color= '#000000';
+                        opt.style.margin = '10px';
+                        opt.style.textAlign = 'center';
                         select.appendChild(opt);
                     });
                     //set select element value to current task status and update background colour based on status
