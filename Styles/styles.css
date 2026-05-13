@@ -105,7 +105,7 @@ select{
 }
 .task{
     border: 2px solid #000000;
-    background-color: #20665F;
+    background-color: #0B0D67;
     border-radius: 5px;
     padding: 5px;
     margin: 5px;
@@ -123,25 +123,49 @@ select{
 }
 .details-and-actions{
     display:flex;
-    justify-content: space-between;
-    ;
+    width: 100%;
+    padding: 5px;
+    
 }
 
 .separatorLeft{
-    display:inline-block;
+    display:flex;
+    
     padding: 5px;
+    width: 100%;
     
 }
 .separatorLeft p{
     padding :5px 5px;
 }
+.task-description{
+    margin-left:10px;
+}
+
+    
+    
 .separatorRight{
-    display:inline-flex;
+    display:flex;
     justify-content: flex-end;
     flex-direction: column;
     gap: 5px;
     padding: 5px;
+    width: 25%;
     
+}
+.status-option{
+    background-color: #FFFFFF;
+    color: #000000;
+    margin: 10px;
+    text-align: center;
+}
+.deleteBtn{
+    background-color: #FF0000;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 5px 10px;
 }
 
 
