@@ -23,25 +23,27 @@ form.addEventListener('submit', (event)=>{
     const description = descriptionInput.value;
     const status = statusInput.value;
     console.log("heard new task submission: calling addTask from data.js ...");
-    // add task and re-render tasks on page
     try{
+        //call addTask function from data.js to add new task to tasklist.
         const taskAdded = addTask(title, description, status);
-        if(taskAdded){
-            renderTasks();
+        //if task was added successfully, log success message and clear input fields. autofucus title input for faster task entry
+        if(taskAdded){            
             console.log('Task added successfully.');
             // clear input fields
             titleInput.value = '';
             descriptionInput.value = '';
             statusInput.value = 'Not Started';
-        }
-        // if task was not added successfully, log an error message
-        else{
-            console.log('Failed to add task. Please check input values and try again.');
+            titleInput.focus();
         }
     }
     catch(error){
-        console.error('Error adding task:', error);
+        alert(`Error adding task: ${error.message}`);
+        console.error(`Error adding task: ${error.message}`);
+
     }
+    //re-render tasks on page to show new task in task list regardless of adding task was successful or not
+
+    renderTasks();
 });
 
 // listen for change events on task status dropdowns to update task status

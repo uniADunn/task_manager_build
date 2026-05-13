@@ -68,8 +68,7 @@ function addTask(title, description, status){
         return true;
         
     } catch (error) {
-        console.error(error.message);
-        return false;
+        throw new Error(error.message);
     }
 };
 
@@ -88,7 +87,7 @@ updateTaskStatus = (taskIndex, newStatus) => {
         }
     } 
     catch (error) {
-        console.error(error.message);
+        alert(error.message);
         return false;
     }
 }
