@@ -32,44 +32,49 @@ removeMessage = () => {
 
 createTaskElement = (task, index, elementTag,  className) => {    
     //create task container element and data attribute for task index
-    const element = document.createElement(elementTag);
-    //if element is a label for created at or description, add specific class name for styling
-    
+    const element = document.createElement(elementTag);//create element based on provided tag and class name
     if(className){
-        element.classList.add(className);
-        
+        element.classList.add(className);        
     }
+    //if element is a select element, add name attribute
     if(elementTag === 'select'){
         element.name = 'task-status';
     }
+    //add data attribute to element to store task index for later reference when updating task status or deleting task
     element.dataset.index = index;
     return element;
 }
 
 insertTaskContent = (element, content) =>{
+    //if element is created at or description, format content with label and value for better presentation, otherwise insert content as text content of element
     if(element.classList.contains('task-created-at')){
         const label_p = document.createElement('p');
+        //italicise label for created at
         label_p.innerHTML = '<i>Created At:</i>';
         
         const content_p = document.createElement('p');
+        //insert content with line break and indentation for better presentation
         content_p.innerHTML = `<br>&emsp;<b>${content}</b></br>`;
-        
+        //combine label and content and insert into element
         element.innerHTML = `${label_p.innerHTML} ${content_p.innerHTML}`;
     }
     else if(element.classList.contains('task-description')){
+        //italicise label for description
         const label_p = document.createElement('p');
         label_p.innerHTML = '<i>Description:</i>';
-        
+        //insert content with line break and indentation for better presentation
         const content_p = document.createElement('p');
         content_p.innerHTML = `<br>&emsp;<b>${content}</b></br>`;
-        
+        //combine label and content and insert into element
         element.innerHTML = `${label_p.innerHTML} ${content_p.innerHTML}`;
     }
+    //for other elements (e.g. title, delete button), insert content as text content of element
     else{
         element.textContent = content;
     }
 }
 createOptionsForSelectElement = (selectElement, validStatuses) =>{
+    //create and append option elements to select element for each valid status defined in data.js
     validStatuses.forEach(
         (statusOption) =>{
             const opt = document.createElement('option');
@@ -81,6 +86,7 @@ createOptionsForSelectElement = (selectElement, validStatuses) =>{
 }
 
 setCurrentTaskStatus = (selectElement, currentStatus) =>{
+    //set select element value to current task status and update background colour based on status
     selectElement.value = currentStatus;
     if(selectElement.value === 'Not Started'){
         selectElement.style.backgroundColor = '#911818';
@@ -97,8 +103,10 @@ setCurrentTaskStatus = (selectElement, currentStatus) =>{
 //task status dropdown is dynamically generated based on valid statuses defined in data.js and is pre-selected to the current task status
 //elements are then appended to the task list container in the DOM
 loadTasks = (tasks) => {
+    //iterate through each task and create corresponding DOM elements for task details and actions, then append to task container
     tasks.forEach(
             (task, index) => {
+                //create DOM elements
                 //task container
                 const taskDiv = createTaskElement(task, index, 'div', 'task');
                 //details and actions container
@@ -115,6 +123,7 @@ loadTasks = (tasks) => {
                 const selectElement = createTaskElement(task, index, 'select', 'task-status');
                 const deleteBtnElement = createTaskElement(task, index, 'button', 'deleteBtn');
 
+                //insert content into elements with appropriate formatting for created at and description, and set delete button text.
                 insertTaskContent(titleElement, task.title.toUpperCase());
                 insertTaskContent(createdAtElement, task.start_ts);
                 insertTaskContent(descriptionElement, task.description);
@@ -125,7 +134,7 @@ loadTasks = (tasks) => {
                 createOptionsForSelectElement(selectElement, validStatuses);
                 //set select element value to current task status and update background colour based on status
                 setCurrentTaskStatus(selectElement, task.status);
-                    
+                //append elements to the DOM in the correct structure
                 taskContainer.appendChild(taskDiv);
                 taskDiv.appendChild(divSeparatorTop);
                 taskDiv.appendChild(detailsAndActionsContainer);
