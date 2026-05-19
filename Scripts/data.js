@@ -2,7 +2,7 @@
 // it ensures that all data for a task is valid before creating a new Task object adding it to the tasks array.
 //it also provides functions to update task status, get all tasks, and delete tasks.
 
-
+const Task = require('./task'); // import the Task class from the task.js file.
 const tasks = []; // array to store tasks.
 const validStatuses = ['Not Started', 'In Progress', 'Completed']; // valid statuses for task states.
 
@@ -68,7 +68,7 @@ function addTask(title, description, status){
         return true;
         
     } catch (error) {
-        throw new Error(error.message);
+        throw new Error(`Error adding task: ${error.message}`);
     }
 };
 
@@ -100,14 +100,8 @@ getStatuses = () => {
 //if its empty, it logs a message to the console and returns null. otherwise, it returns the tasks array.
 function getTasks(){
     //check if tasks array is empty.
-    if(tasks.length === 0){
-        console.log('No tasks found.');
-        return null;
-    }
-    //tasks array is not empty, return the tasks array.
-    else{
-        return tasks;
-    }
+    return tasks;
+    
 }
 // function to delete a task. it takes the index of the task in the tasks array as a parameter. it checks if the task index is valid.
 //if valid, it deletes the task at the specified index from the tasks array. if the task index is invalid, it logs an error message to the console. (will give feedback to the user in the future.)
@@ -128,3 +122,4 @@ deleteTask = (taskIndex) =>{
         }
     }
 }
+module.exports = { addTask, getTasks, deleteTask, updateTaskStatus, getStatuses, validateText, validateStatus };

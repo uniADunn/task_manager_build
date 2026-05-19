@@ -15,9 +15,9 @@ class Task {
         const month = String(date.getMonth() + 1).padStart(2, '0');
         const year = date.getFullYear();
 
-        console.log(`Converting to readable date format...`);
+        //console.log(`Converting to readable date format...`);
         const now = `${day}/${month}/${year}`;
-        console.log(`Converted date: ${now}`);
+        //console.log(`Converted date: ${now}`);
         return now;
     }
     //method to return a string representation of the task object, including start timestamp (date created), title, description and status
