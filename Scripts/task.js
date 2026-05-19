@@ -6,6 +6,7 @@ class Task {
         this.title = title;
         this.description = description;
         this.status = status;
+        
     }
     //method to convert a date object to a readable string representation (dd/mm/yyyy format)
     convertToDate = (date) => {
@@ -21,9 +22,7 @@ class Task {
     }
     //method to return a string representation of the task object, including start timestamp (date created), title, description and status
     toString(){
-        return `Created: ${this.start_ts}
-Task Title: ${this.title}
-Description: ${this.description}
-Status: ${this.status}`;
+        return `Created: ${this.start_ts}\nTask Title: ${this.title}\nDescription: ${this.description}\nStatus: ${this.status}`;
     }
 }
+module.exports = Task;

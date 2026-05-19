@@ -1,0 +1,23 @@
+{
+  "name": "task_manager_build",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uniADunn/task_manager_build.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/uniADunn/task_manager_build/issues"
+  },
+  "homepage": "https://github.com/uniADunn/task_manager_build#readme",
+  "devDependencies": {
+    "jest": "^30.4.2"
+  }
+}

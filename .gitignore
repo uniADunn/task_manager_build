@@ -1,2 +1,4 @@
 Diagrams/
 Documents/
+node_modules/
+package-lock.json
