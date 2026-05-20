@@ -1,5 +1,29 @@
-const Task = require('../Scripts/task');
-const {addTask, getTasks, deleteTask, updateTaskStatus, getStatuses, validateText, validateStatus} = require('../Scripts/data');
+
+const data = require('../Scripts/data');
+
+test('text validation works correctly', () => {
+    //valid text should not throw an error
+    expect(() => validateText('valid text')).not.toThrow();
+    //string with numbers
+    expect(() => validateText('this has 123 numbers')).not.toThrow();
+    //empty string should throw an error
+    expect(() => validateText('')).toThrow();
+    //string with only spaces should throw an error
+    expect(() => validateText('   ')).toThrow();
+    //string with invalid characters should throw an error
+    expect(() => validateText('this has # ; invalid characters')).toThrow();
+});
+
+test('status validation works correctly', () => {
+    //valid statuses should not throw an error
+    expect(() => validateStatus('Not Started')).not.toThrow();
+    expect(() => validateStatus('In Progress')).not.toThrow();
+    expect(() => validateStatus('Completed')).not.toThrow();
+    //invalid status should throw an error
+    expect(() => validateStatus('Invalid Status')).toThrow();
+});
+
+
 
 test('getTasks returns null if there are no tasks', () => {
     const tasks = getTasks();
@@ -30,4 +54,6 @@ test('addTask adds a task to the tasks array', ()=>{
     expect(result).toBe(true);
     expect(taskLengthAfter).toBe(taskLengthBefore + 1);
 });
+
+
 

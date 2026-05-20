@@ -25,4 +25,4 @@ class Task {
         return `Created: ${this.start_ts}\nTask Title: ${this.title}\nDescription: ${this.description}\nStatus: ${this.status}`;
     }
 }
-module.exports = Task;
+if(typeof module !== 'undefined') module.exports = Task;

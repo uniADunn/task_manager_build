@@ -3,7 +3,7 @@
 
 const taskContainer = document.querySelector('#task-container');
 // function to create and display "No Tasks to display" message when there are no tasks in the task list.
-noTasksMessage = ()=>{
+const noTasksMessage = ()=>{
     //create and append message element to task list container
     const p = document.createElement('p');
     p.id = 'no-tasks';
@@ -12,7 +12,7 @@ noTasksMessage = ()=>{
 }
 
 //function to remove existing tasks or "no tasks to display" message from the DOM before rendering updated task list
-removeMessage = () => {
+const removeMessage = () => {
     //check if no task message is present in the dom and remove it.
     if(taskContainer.contains(document.querySelector('#no-tasks'))){
         console.log('Removing existing "No Tasks To Display" message from DOM...');
@@ -30,7 +30,7 @@ removeMessage = () => {
     }
 }
 
-createTaskElement = (task, index, elementTag,  className) => {    
+const createTaskElement = (task, index, elementTag,  className) => {    
     //create task container element and data attribute for task index
     const element = document.createElement(elementTag);//create element based on provided tag and class name
     if(className){
@@ -45,7 +45,7 @@ createTaskElement = (task, index, elementTag,  className) => {
     return element;
 }
 
-insertTaskContent = (element, content) =>{
+const insertTaskContent = (element, content) =>{
     //if element is created at or description, format content with label and value for better presentation, otherwise insert content as text content of element
     if(element.classList.contains('task-created-at')){
         const label_p = document.createElement('p');
@@ -73,7 +73,7 @@ insertTaskContent = (element, content) =>{
         element.textContent = content;
     }
 }
-createOptionsForSelectElement = (selectElement, validStatuses) =>{
+const createOptionsForSelectElement = (selectElement, validStatuses) =>{
     //create and append option elements to select element for each valid status defined in data.js
     validStatuses.forEach(
         (statusOption) =>{
@@ -85,7 +85,7 @@ createOptionsForSelectElement = (selectElement, validStatuses) =>{
         });
 }
 
-setCurrentTaskStatus = (selectElement, currentStatus) =>{
+const setCurrentTaskStatus = (selectElement, currentStatus) =>{
     //set select element value to current task status and update background colour based on status
     selectElement.value = currentStatus;
     if(selectElement.value === 'Not Started'){
@@ -102,7 +102,7 @@ setCurrentTaskStatus = (selectElement, currentStatus) =>{
 //each task element includes the task title, description, status dropdown and delete button
 //task status dropdown is dynamically generated based on valid statuses defined in data.js and is pre-selected to the current task status
 //elements are then appended to the task list container in the DOM
-loadTasks = (tasks) => {
+const loadTasks = (tasks) => {
     //iterate through each task and create corresponding DOM elements for task details and actions, then append to task container
     tasks.forEach(
             (task, index) => {
@@ -150,7 +150,7 @@ loadTasks = (tasks) => {
 }
 
 //main function to render tasks on the page by retrieving tasks from data.js and calling loadTasks to create and display task elements in the DOM
-function renderTasks(){
+const renderTasks = () => {
     event.preventDefault();
     //get tasks from data.js.
     const tasks = getTasks();
@@ -167,7 +167,7 @@ function renderTasks(){
 }
 
 //called form event.js when a change event is detected.
-updateTaskStatusColours = (newStatus, target)=>{    
+const updateTaskStatusColours = (newStatus, target)=>{    
     if(target){
         switch(newStatus){
             case 'Not Started':
@@ -184,4 +184,5 @@ updateTaskStatusColours = (newStatus, target)=>{
         }
     }
 }
+if(typeof module !== 'undefined') module.exports = {renderTasks, updateTaskStatusColours};
 

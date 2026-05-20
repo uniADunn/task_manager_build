@@ -1,36 +1,27 @@
-// data.js handles the data management for the task manager application.
+
 // it ensures that all data for a task is valid before creating a new Task object adding it to the tasks array.
 //it also provides functions to update task status, get all tasks, and delete tasks.
-
-const Task = require('./task'); // import the Task class from the task.js file.
+if (typeof module !== 'undefined') Task = require('./task'); // import the Task class from the task.js file if running in a Node.js environment.
+//const Task = require('./task');
 const tasks = []; // array to store tasks.
 const validStatuses = ['Not Started', 'In Progress', 'Completed']; // valid statuses for task states.
 
 //function to validate text input. it checks if the text is empty or not and if it contains only letters, numbers, and spaces.
 //if the text is valid, it returns true. otherwise, it throws an error with a descriptive message.
-const validateText = (text) =>{
+validateText = (text) =>{
     // check if text is not empty.
-    if(text){
+    if(!text || text.trim() === ''){
         //check if text contains only letters, numbers, and spaces using a regular expression.
-        if(!text.match(/[^a-zA-Z0-9 ]/)){            
-            //text is valid, return true.
-            return true;
-        }
-        //text is invalid.
-        else{
-            throw new Error('text can only contain letters, numbers, spaces.');
-            return false;
-        }
-    }
-    //text is empty.
-    else{
         throw new Error('text cannot be empty.');
-        return false;
     }
+    if(text.match(/[^a-zA-Z0-9 ]/)){            
+        throw new Error('text can only contain letters, numbers and spaces.');
+    }
+    return true;
 }
 
 //function to validate status input. it checks if the status is one of the valid statuses defined in the validStatuses array.
-const validateStatus = (status) => {
+validateStatus = (status) => {
     //check if status is in the validStatuses array.
     if(validStatuses.includes(status)){
         //status is valid, return true.
@@ -48,7 +39,7 @@ const validateStatus = (status) => {
 //if the input is valid, it creates a new Task object and adds it to the tasks array.
 //if the input is invalid, it catches the error and logs the error message to the console. (will give feedback to the user in the future.)
 //returns true if the task was added successfully, false otherwise.
-function addTask(title, description, status){
+addTask = (title, description, status) => {
     try{
         //validate input and status choice. if any of the input is invalid, an error will be thrown and caught in the catch block.
         validateText(title);
@@ -98,7 +89,7 @@ getStatuses = () => {
 }
 //function to get all tasks. it checks if the tasks array is empty.
 //if its empty, it logs a message to the console and returns null. otherwise, it returns the tasks array.
-function getTasks(){
+getTasks = () => {
     //check if tasks array is empty.
     return tasks;
     
@@ -122,4 +113,4 @@ deleteTask = (taskIndex) =>{
         }
     }
 }
-module.exports = { addTask, getTasks, deleteTask, updateTaskStatus, getStatuses, validateText, validateStatus };
+if(typeof module !== 'undefined') module.exports = {addTask, getTasks, updateTaskStatus, deleteTask, getStatuses, validateText, validateStatus};
