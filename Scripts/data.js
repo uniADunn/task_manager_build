@@ -78,8 +78,7 @@ updateTaskStatus = (taskIndex, newStatus) => {
         }
     } 
     catch (error) {
-        alert(error.message);
-        return false;
+        throw new Error(`Error updating task status: ${error.message}`);
     }
 }
 
@@ -90,7 +89,6 @@ getStatuses = () => {
 //function to get all tasks. it checks if the tasks array is empty.
 //if its empty, it logs a message to the console and returns null. otherwise, it returns the tasks array.
 getTasks = () => {
-    //check if tasks array is empty.
     return tasks;
     
 }

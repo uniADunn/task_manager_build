@@ -151,7 +151,6 @@ const loadTasks = (tasks) => {
 
 //main function to render tasks on the page by retrieving tasks from data.js and calling loadTasks to create and display task elements in the DOM
 const renderTasks = () => {
-    event.preventDefault();
     //get tasks from data.js.
     const tasks = getTasks();
     //console.log(tasks);
